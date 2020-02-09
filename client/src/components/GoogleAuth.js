@@ -17,8 +17,8 @@ class GoogleAuth extends React.Component {
 
 export default GoogleAuth;
 
-// // type on browser
-// gapi
-// // request stuff we need
-// gapi.load('client:auth2')
-// gapi
+// // test on browser console
+// const auth = gapi.auth2.getAuthIntance;
+// auth
+// auth.signIn()
+// auth.isSignedIn.get()
