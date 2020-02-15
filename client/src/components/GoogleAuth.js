@@ -3,8 +3,6 @@ import { signIn, signOut } from "../actions";
 import { connect } from "react-redux";
 
 class GoogleAuth extends React.Component {
-    state = { isSignedIn: null };
-
     componentDidMount() {
         // load and initialize google oauth library
         window.gapi.load('client:auth2', () => {
@@ -13,19 +11,18 @@ class GoogleAuth extends React.Component {
                 scope: 'email'
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance();
-                this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+                this.onAuthChange(this.auth.isSignedIn.get());
                 this.auth.isSignedIn.listen(this.onAuthChange);
             });
         });
     }
 
-    onAuthChange = (isSignedIn) => {
+    onAuthChange = isSignedIn => {
         if (isSignedIn) {
-            console.log('signin');
-            this.props.signIn();
+            this.props.signIn(this.auth.currentUser.get().getId());
         } else {
-            console.log('signout');
             this.props.signOut();
+
         }
     };
 
@@ -38,14 +35,15 @@ class GoogleAuth extends React.Component {
     };
 
     renderAuthButton() {
-        if (this.state.isSignedIn === null) {
+        if (this.props.isSignedIn === null) {
             return <div>hi</div>;
-        } else if (this.state.isSignedIn) {
+        } else if (this.props.isSignedIn) {
             return (
                 <button onClick={this.onSignOutClick} className="ui red google button">
                     <i className="google icon" />
                     Sign Out
                 </button>
+
             );
         } else {
             return (
@@ -62,7 +60,14 @@ class GoogleAuth extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return { isSignedIn: state.auth.isSignedIn};
+};
+
 export default connect(
-    null,
+    mapStateToProps,
     { signIn, signOut }
 )(GoogleAuth);
+
+// get the id of current user
+// gapi.auth2.getAuthInstance().currentUser.get().getId()
