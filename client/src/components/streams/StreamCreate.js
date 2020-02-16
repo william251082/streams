@@ -14,7 +14,6 @@ class StreamCreate extends React.Component {
         }
     }
 
-    // make renderInput an arrow function so renderError can be used
     renderInput = ({ input, label, meta }) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
@@ -26,11 +25,6 @@ class StreamCreate extends React.Component {
             </div>
         );
     };
-
-    // // call back function that will passed to component should be bind, make this an arrow function
-    // onSubmit(formValues) {
-    //     this.props.createStream(formValues);
-    // }
 
     onSubmit = (formValues) => {
         this.props.createStream(formValues);

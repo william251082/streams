@@ -1,19 +1,16 @@
 {
   "streams": [
     {
-      "title": "w",
-      "description": "w",
+      "title": "doutz",
+      "description": "doutz",
+      "userId": "116885028771834119250",
       "id": 1
     },
     {
-      "title": "d",
-      "description": "d",
+      "title": "will",
+      "description": "will",
+      "userId": "116885028771834119250",
       "id": 2
-    },
-    {
-      "title": "m",
-      "description": "m",
-      "id": 3
     }
   ]
 }
