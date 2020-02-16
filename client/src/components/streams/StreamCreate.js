@@ -62,13 +62,6 @@ const validate = (formValues) => {
     return errors;
 };
 
-// // this works too
-// export default connect()(reduxForm({
-//         form: 'streamCreate',
-//         validate
-//     })(StreamCreate)
-// );
-
 const formWrapped = reduxForm({
     form: 'streamCreate',
     validate
