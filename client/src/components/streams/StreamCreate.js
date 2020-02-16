@@ -13,12 +13,9 @@ class StreamCreate extends React.Component {
     }
 
     onSubmit(formValues) {
-      // redux will handle event.preventDefault();
-        console.log('form values', formValues)
     }
 
     render() {
-        console.log('props', this.props)
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
                 <Field name="title" component={this.renderInput} label="Enter Title" />
@@ -29,6 +26,22 @@ class StreamCreate extends React.Component {
         );
     }
 }
+
+const validate = (formValues) => {
+    const errors = {};
+
+    if (!formValues.title) {
+        // only ran if user did not enter a title
+        errors.title = 'You must enter a title'
+    }
+
+    if (!formValues.description) {
+        // only ran if user did not enter a description
+        errors.description = 'You must enter a description'
+    }
+
+    return errors;
+};
 
 export default reduxForm({
     form: 'streamCreate'
