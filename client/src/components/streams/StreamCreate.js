@@ -2,7 +2,6 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 
 class StreamCreate extends React.Component {
-    // destructure error and touched from meta
     renderError({ error, touched }) {
         if (touched && error) {
             return (
@@ -13,9 +12,10 @@ class StreamCreate extends React.Component {
         }
     }
 
+    // make renderInput an arrow function so renderError can be used
     renderInput = ({ input, label, meta }) => {
-        console.log(meta)
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+
         return (
             <div className={className}>
                 <label>{label}</label>
@@ -23,7 +23,7 @@ class StreamCreate extends React.Component {
                 {this.renderError(meta)}
             </div>
         );
-    }
+    };
 
     onSubmit(formValues) {
     }
