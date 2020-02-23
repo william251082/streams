@@ -6,11 +6,11 @@ export default (state = {}, action) => {
         case FETCH_STREAMS:
             return { ...state, ..._.mapKeys(action.payload, 'id') };
         case FETCH_STREAM:
-            return { ...state, [action.payload]: action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         case CREATE_STREAM:
-            return { ...state, [action.payload]: action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         case EDIT_STREAM:
-            return { ...state, [action.payload]: action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         case DELETE_STREAM:
             // on delete, payload is the id itself
             // omit won't change the state oo previous object, it will create a new object with all the props intact
@@ -19,11 +19,3 @@ export default (state = {}, action) => {
             return state;
     }
 }
-
-// const colors = [
-//     { hue: 'green' },
-//     { hue: 'yellow' },
-//     { hue: 'blue' },
-// ];
-//
-// _.mapKeys(colors, 'hue');
