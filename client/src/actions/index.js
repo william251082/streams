@@ -1,5 +1,6 @@
 import {CREATE_STREAM, DELETE_STREAM, EDIT_STREAM, FETCH_STREAM, FETCH_STREAMS, SIGN_IN, SIGN_OUT} from "./types";
 import streams from "../apis/streams";
+import history from "../history";
 
 export const signIn = (userId) => {
     return {
@@ -22,7 +23,7 @@ export const createStream = formValues => async (dispatch, getState) => {
         type: CREATE_STREAM,
         payload: response.data
     });
-    // history.push('/');
+    history.push('/');
 };
 
 export const fetchStream = id => async dispatch => {
@@ -31,7 +32,7 @@ export const fetchStream = id => async dispatch => {
     dispatch({
         type: FETCH_STREAM,
         payload: response.data
-    })
+    });
 };
 
 export const fetchStreams = id => async dispatch => {
@@ -41,7 +42,6 @@ export const fetchStreams = id => async dispatch => {
         type: FETCH_STREAMS,
         payload: response.data
     });
-    // history.push('/');
 };
 
 export const editStream = (id, formValues) => async dispatch => {
@@ -50,7 +50,8 @@ export const editStream = (id, formValues) => async dispatch => {
     dispatch({
         type: EDIT_STREAM,
         payload: response.data
-    })
+    });
+    history.push('/');
 };
 
 export const deleteStream = id => async dispatch => {
@@ -59,5 +60,5 @@ export const deleteStream = id => async dispatch => {
     dispatch({
         type: DELETE_STREAM,
         payload: id
-    })
+    });
 };
