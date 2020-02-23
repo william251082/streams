@@ -6,7 +6,6 @@ import _ from "lodash";
 
 class StreamEdit extends React.Component {
     componentDidMount() {
-        console.log('propsCdm', this.props)
         this.props.fetchStream(this.props.match.params.id);
     }
 
@@ -15,7 +14,6 @@ class StreamEdit extends React.Component {
     };
 
     render() {
-        console.log('props', this.props);
         if (!this.props.stream) {
             return <div>Loading...</div>
         }
